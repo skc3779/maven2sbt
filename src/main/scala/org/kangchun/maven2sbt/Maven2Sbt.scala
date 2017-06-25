@@ -61,6 +61,9 @@ object Maven2Sbt extends App {
                         artifactId: String,
                         version: String,
                         scope: Option[String]) {
+
+    println(findPropertyName(version).fold("\"" + version + "\"")(dotSeparatedToCamelCase))
+
     def toDependencyString: String =
       s""""$groupId" % "$artifactId" % ${findPropertyName(version).fold("\"" + version + "\"")(dotSeparatedToCamelCase)}${scope.fold("")(x => s""" % "$x"""")}"""
   }
