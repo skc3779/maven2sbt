@@ -24,7 +24,11 @@ object Maven2Sbt extends App {
   }
 
   def dotSeparatedToCamelCase(dotSeparated: String): String = {
-    dotSeparated
+    val names = dotSeparated.trim.split("\\.")
+    if (names.length == 1)
+      dotSeparated
+    else
+      names.head + names.tail.map(_.capitalize).mkString
   }
 
   // elements to array
